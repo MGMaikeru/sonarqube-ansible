@@ -1,1 +1,1 @@
-# training-ansible
+# sonarqube-ansible
