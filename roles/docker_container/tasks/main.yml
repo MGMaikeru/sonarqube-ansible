@@ -1,0 +1,17 @@
+- name: Ejecutar SonarQube
+  docker_container:
+    name: sonarqube-container
+    image: "sonarqube:latest"
+    state: started
+    ports:
+      - "9001:9000"
+
+- name: Copiar archivo docker-compose.yml
+  copy:
+    src: files/docker-compose.yml
+    dest: /home/{{ ansible_user }}/docker-compose.yml
+
+- name: Iniciar servicios con Docker Compose
+  command: docker-compose up -d
+  args:
+    chdir: /home/{{ ansible_user }}
